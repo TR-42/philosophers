@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/17 22:26:13 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/21 23:51:37 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME	=	philo
 SRC_DIR	=	./srcs
 
 SRCS	=\
+	libft/ft_strlen.c\
 
 OBJ_DIR	=	./obj
 OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -33,6 +34,7 @@ $(NAME):	$(OBJS)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/libft
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 debug: clean
