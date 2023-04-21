@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/21 23:51:37 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/21 23:54:52 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ bonus:
 
 clean:
 	rm -f $(OBJS) $(DEPS)
+	rm -d $(OBJ_DIR)/libft 2>/dev/null || exit 0
 	rm -d $(OBJ_DIR) 2>/dev/null || exit 0
 
 fclean:	clean
