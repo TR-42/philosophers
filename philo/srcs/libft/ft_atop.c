@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:36:00 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/22 19:16:52 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/22 19:38:26 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ size_t	ft_atop(const char *str, const char **endptr)
 	size_t	value;
 
 	value = 0;
+	errno = 0;
 	if (endptr == NULL)
 		endptr = &str;
 	*endptr = str;
