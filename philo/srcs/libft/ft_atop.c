@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:36:00 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/22 18:53:46 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/22 19:16:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ size_t	ft_atop(const char *str, const char **endptr)
 	{
 		while (value != UINTPTR_MAX && ft_isdigit(**endptr))
 		{
-			if (can_mulp(value, 10) && can_add(value * 10, **endptr - '0'))
+			if (can_mulp(value, 10) && can_addp(value * 10, **endptr - '0'))
 				value = (value * 10) + (**endptr - '0');
 			else
 			{
