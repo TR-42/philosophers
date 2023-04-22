@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/22 18:54:55 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/22 18:56:13 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC_DIR	=	./srcs
 SRCS	=\
 	libft/can_add.c\
 	libft/can_mul.c\
+	libft/ft_atop.c\
 	libft/ft_is.c\
 	libft/ft_strlen.c\
 	errors.c\
