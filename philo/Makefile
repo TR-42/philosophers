@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/21 23:57:07 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/22 18:54:32 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME	=	philo
 SRC_DIR	=	./srcs
 
 SRCS	=\
+	libft/can_add.c\
+	libft/can_mul.c\
 	libft/ft_strlen.c\
 	errors.c\
 
