@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_is.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 23:41:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/22 18:38:52 by kfujita          ###   ########.fr       */
+/*   Created: 2023/04/22 18:38:09 by kfujita           #+#    #+#             */
+/*   Updated: 2023/04/22 18:39:20 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-// - bool
-# include <stdbool.h>
-
-// - size_t
-# include <stddef.h>
-
-# include "ft_math.h"
-
-size_t	ft_strlen(const char *str);
-size_t	ft_strnlen(const char *str, size_t maxlen);
-
-bool	ft_isdigit(int c);
-
-#endif
+bool	ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
+}
