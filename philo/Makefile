@@ -21,6 +21,7 @@ SRCS	=\
 	libft/ft_is.c\
 	libft/ft_strlen.c\
 	errors.c\
+	main.c\
 
 OBJ_DIR	=	./obj
 OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
