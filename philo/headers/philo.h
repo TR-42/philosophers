@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 22:51:29 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 23:14:41 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef pthread_t		t_thrd;
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_app	t_app;
-typedef struct timeval	t_timeval;
+typedef struct timeval	t_tv;
 
 typedef enum e_philo_state
 {
@@ -64,8 +64,8 @@ struct s_app
 	t_mtx	*forks;
 };
 
-bool	print_log(t_app *d, t_timeval time, size_t num, t_philo_state state);
+bool	print_log(t_app *d, t_tv time, size_t num, t_philo_state state);
 
-bool	sleeper(t_timeval target, t_timeval *result);
+bool	sleeper(t_tv target, t_tv *result);
 
 #endif

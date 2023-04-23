@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:49:36 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 22:31:14 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 23:14:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "philo.h"
 
-bool	print_log(t_app *d, t_timeval time, size_t num, t_philo_state state)
+bool	print_log(t_app *d, t_tv time, size_t num, t_philo_state state)
 {
 	int			ret;
 	const char	*s_state;

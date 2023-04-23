@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 22:56:25 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 23:14:57 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "philo.h"
 
-bool	sleeper(t_timeval target, t_timeval *result)
+bool	sleeper(t_tv target, t_tv *result)
 {
 	useconds_t	sleep_us;
 
