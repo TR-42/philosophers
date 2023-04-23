@@ -31,18 +31,24 @@ typedef struct timeval	t_tv;
 
 typedef enum e_philo_state
 {
+	unknown,
 	take_a_fork,
 	eating,
 	thinking,
 	sleeping,
 	dead,
+	err,
 }	t_philo_state;
+typedef t_philo_state	t_pstat;
 
 typedef struct s_philo
 {
 	t_app	*d;
 	size_t	num;
 	t_thrd	soul;
+	t_tv	deadline;
+	t_pstat	state;
+	t_mtx	stat_lck;
 	t_mtx	*fork_l;
 	t_mtx	*fork_r;
 }	t_philo;
@@ -59,6 +65,8 @@ struct s_app
 	size_t	eat_ms;
 	size_t	sleep_ms;
 	size_t	eat_quota;
+	bool	is_noquota;
+	t_tv	start;
 	t_mtx	print_lock;
 	t_philo	*philos;
 	t_mtx	*forks;
