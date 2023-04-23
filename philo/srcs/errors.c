@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:40:09 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/22 18:57:13 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 19:03:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,15 @@ int	print_err(const char *msg)
 	{
 		(write(STDERR_FILENO, msg, len) > 0 && write(STDERR_FILENO, "\n", 1));
 	}
+	return (1);
+}
+
+int	print_err_dispose_mem(const char *msg, t_app *d)
+{
+	print_err(msg);
+	free(d->philos);
+	free(d->forks);
+	d->philos = NULL;
+	d->forks = NULL;
 	return (1);
 }
