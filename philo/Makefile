@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/22 18:56:13 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/23 19:36:44 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS	=\
 	libft/can_add.c\
 	libft/can_mul.c\
 	libft/ft_atop.c\
+	libft/ft_calloc.c\
 	libft/ft_is.c\
 	libft/ft_strlen.c\
 	errors.c\
