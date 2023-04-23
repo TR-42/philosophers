@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 22:07:03 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 22:51:29 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ struct s_app
 };
 
 bool	print_log(t_app *d, t_timeval time, size_t num, t_philo_state state);
+
+bool	sleeper(t_timeval target, t_timeval *result);
 
 #endif
