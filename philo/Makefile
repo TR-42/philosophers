@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/23 19:36:44 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/23 19:39:37 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ CC		=	cc
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
+	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
