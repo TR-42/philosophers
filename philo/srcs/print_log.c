@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:49:36 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 22:10:44 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/23 22:31:14 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	print_log(t_app *d, t_timeval time, size_t num, t_philo_state state)
 	const char	*s_state;
 
 	s_state = "UNKNOWN STATE";
-	if (state == eating)
+	if (state == take_a_fork)
 		s_state = "has taken a fork";
 	else if (state == eating)
 		s_state = "is eating";
@@ -33,7 +33,7 @@ bool	print_log(t_app *d, t_timeval time, size_t num, t_philo_state state)
 		s_state = "died";
 	if (pthread_mutex_lock(&(d->print_lock)) != 0)
 		return (false);
-	ret = printf("%ld%4ld %zu %s\n",
+	ret = printf("%ld%04ld %zu %s\n",
 			time.tv_sec, time.tv_usec / 1000l, num, s_state);
 	return (pthread_mutex_unlock(&(d->print_lock)) == 0 && ret > 0);
 }
