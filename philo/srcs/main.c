@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:39 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 19:33:11 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/24 00:43:55 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	_t_app_init_philo_mutex(t_app *d)
 	size_t	i;
 
 	i = 0;
+	if (pthread_mutex_init(&(d->print_lock), NULL) != 0)
+		return (print_err_dispose_mem("mutex for log-print init failed", d));
 	while (i < d->philo_cnt)
 	{
 		d->forks[i] = (t_mtx){0};

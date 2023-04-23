@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:40:09 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 19:31:51 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/24 00:43:35 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	print_err_dispose_mem_mtx(const char *msg, t_app *d, size_t mtx_cnt)
 	size_t	i;
 
 	i = 0;
+	pthread_mutex_destroy(&(d->print_lock));
 	if (d->forks != NULL)
 		while (i < mtx_cnt)
 			pthread_mutex_destroy(d->forks + i++);
