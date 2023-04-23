@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:22:57 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/24 00:23:26 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/24 00:33:46 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // - usleep
 #include <unistd.h>
 
+#include "ft_math.h"
 #include "philo.h"
 
 bool	sleeper(t_tv target, t_tv *result)
@@ -38,4 +39,13 @@ bool	sleeper(t_tv target, t_tv *result)
 			return (false);
 	}
 	return (false);
+}
+
+bool	t_tv_addms(t_tv *target, size_t ms)
+{
+	if (!can_addl(target->tv_sec, (ms / 1000) + (target->tv_usec / 1000000)))
+		return (false);
+	target->tv_sec += (ms / 1000) + (target->tv_usec / 1000000);
+	target->tv_usec = ((ms % 1000) * 1000 + target->tv_usec) % 1000000;
+	return (true);
 }
