@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:39 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/24 00:43:55 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/24 00:44:28 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static int	_t_app_init(t_app *d, int argc, const char *argv[])
 	if (argc != 5 && argc != 6)
 		return (print_err("usage: "
 				"philo philo_cnt die_ms eat_ms sleep_ms [eat_quota]"));
-	d->eat_quota = UINTPTR_MAX;
 	if (!_set(argv[1], &(d->philo_cnt)) || !_set(argv[2], &(d->die_ms))
 		|| !_set(argv[3], &(d->eat_ms)) || !_set(argv[4], &(d->sleep_ms))
 		|| (argc == 6 && !_set(argv[5], &(d->eat_quota))))
 		return (print_err("Invalid argument format (Parse Error)"));
 	if (d->philo_cnt <= 0 || d->die_ms <= 0 || d->philo_cnt == UINTPTR_MAX)
 		return (print_err("Invalid argument (some argument out of range)"));
+	d->is_noquota = argc != 6;
 	d->philos = ft_calloc_nofill(d->philo_cnt, sizeof(t_philo));
 	d->forks = ft_calloc_nofill(d->philo_cnt, sizeof(t_mtx));
 	if (d->philos == NULL || d->forks == NULL)
