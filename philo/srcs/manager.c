@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:12:37 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:24:14 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ static bool	philo_action(t_philo *p)
 		return (false);
 	}
 	success = gettimeofday(&tv, NULL) == 0;
-	if (success)
-		success = print_log(p->d, tv, p->num, _set_last_eat(p, tv));
-	pthread_mutex_unlock(p->fork_l);
-	pthread_mutex_unlock(p->fork_r);
-	if (!success || !t_tv_addms(&tv, p->d->eat_ms) || !sleeper(tv, &tv))
-		return (false);
-	_state(p, sleeping);
+	success = (success && print_log(p->d, tv, p->num, _set_last_eat(p, tv)));
+	success = (success && t_tv_addms(&tv, p->d->eat_ms));
+	success = (success && sleeper(tv, &tv));
+	(void)(pthread_mutex_unlock(p->fork_l) + pthread_mutex_unlock(p->fork_r));
+	if (!success)
+		return (_state(p, err) == unknown);
+	if (is_sim_end_or_set_state(p, sleeping))
+		return (true);
 	success = print_log(p->d, tv, p->num, sleeping);
-	if (!success || !t_tv_addms(&tv, p->d->sleep_ms) || !sleeper(tv, &tv))
-		return (false);
-	return (print_log(p->d, tv, p->num, thinking));
+	if (success && is_sim_end_or_set_state(p, thinking))
+		return (true);
+	success = (success && t_tv_addms(&tv, p->d->sleep_ms) && sleeper(tv, &tv));
+	return (success && print_log(p->d, tv, p->num, thinking));
 }
 
 void	*_philo_soul(t_philo *p)
