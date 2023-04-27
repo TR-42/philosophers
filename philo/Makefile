@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/24 00:26:03 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/27 23:07:30 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS	=\
 	main.c\
 	manager.c\
 	print_log.c\
+	simulator.c\
 	sleeper.c\
 
 OBJ_DIR	=	./obj

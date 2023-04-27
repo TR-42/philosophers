@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:11:33 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:13:31 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_philo_state
 	sleeping,
 	dead,
 	err,
+	ended,
 }	t_philo_state;
 typedef t_philo_state	t_pstat;
 
@@ -81,5 +82,10 @@ bool	t_tv_ispassed(const t_tv *now, const t_tv *target);
 void	*philo_soul(void *p);
 void	*_philo_soul(t_philo *p);
 t_pstat	_state(t_philo *p, t_pstat state);
+
+int		start_simulation(t_app *d);
+bool	is_sim_end_or_set_state(t_philo *p, t_pstat state);
+int		monitor_state(t_app *d);
+int		end_simulation(t_app *d);
 
 #endif
