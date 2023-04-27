@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/25 21:58:36 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:11:33 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ bool	sleeper(t_tv target, t_tv *result);
 bool	t_tv_addms(t_tv *target, size_t ms);
 bool	t_tv_ispassed(const t_tv *now, const t_tv *target);
 
-void	*philo_soul(t_philo *p);
+void	*philo_soul(void *p);
+void	*_philo_soul(t_philo *p);
 t_pstat	_state(t_philo *p, t_pstat state);
 
 #endif

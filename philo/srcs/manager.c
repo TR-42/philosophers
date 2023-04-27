@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/25 20:58:40 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:12:37 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static bool	philo_action(t_philo *p)
 	return (print_log(p->d, tv, p->num, thinking));
 }
 
-void	*philo_soul(t_philo *p)
+void	*_philo_soul(t_philo *p)
 {
 	size_t	count;
 
@@ -93,4 +93,9 @@ void	*philo_soul(t_philo *p)
 		}
 	}
 	return (NULL);
+}
+
+void	*philo_soul(void *p)
+{
+	return (_philo_soul((t_philo *)p));
 }
