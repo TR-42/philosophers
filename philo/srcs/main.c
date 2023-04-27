@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:39 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/24 00:44:28 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:43:41 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ int	main(int argc, const char *argv[])
 	ret = _t_app_init(&d, argc, argv);
 	if (ret != 0 || d.eat_quota == 0)
 		return (ret);
+	ret = start_simulation(&d);
+	if (ret == 0)
+		ret = monitor_state(&d);
+	if (ret == 0)
+		ret = end_simulation(&d);
 	print_err_dispose_mem_mtx(NULL, &d, d.philo_cnt);
 	return (0);
 }
