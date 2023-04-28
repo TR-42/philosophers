@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:13:31 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:10:16 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ bool	t_tv_addms(t_tv *target, size_t ms);
 bool	t_tv_ispassed(const t_tv *now, const t_tv *target);
 
 void	*philo_soul(void *p);
-void	*_philo_soul(t_philo *p);
 t_pstat	_state(t_philo *p, t_pstat state);
 
 int		start_simulation(t_app *d);
