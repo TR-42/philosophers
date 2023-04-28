@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:49:36 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:55:11 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 00:20:49 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ bool	print_log(t_app *d, t_tv time, size_t num, t_philo_state state)
 		s_state = "is sleeping";
 	else if (state == dead)
 		s_state = "died";
+	else
+		return (false);
 	if (pthread_mutex_lock(&(d->print_lock)) != 0)
 		return (false);
 	ret = printf("%ld%04ld %zu %s\n",
