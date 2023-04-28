@@ -70,7 +70,7 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 			* pthread_mutex_unlock(p->fork_r) * 0);
 	success = (success && print_log(p->d, *tv, p->num, take_a_fork_r));
 	success = (success && print_log(p->d, *tv, p->num, _set_last_eat(p, *tv)));
-	success = (success && gettimeofday(tv, NULL) != 0);
+	success = (success && t_tv_addms(tv, p->d->eat_ms));
 	if (success && !t_tv_ispassed(tv, &(p->deadline)))
 		success = sleeper(*tv, tv);
 	(void)(pthread_mutex_unlock(p->fork_l) + pthread_mutex_unlock(p->fork_r));
