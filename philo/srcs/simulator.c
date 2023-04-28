@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:50:59 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 00:14:11 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ bool	is_sim_end_or_set_state(t_philo *p, t_pstat state)
 		else if (t_tv_ispassed(&tv, &(p->deadline)))
 		{
 			is_ended = true;
-			print_log(p->d, tv, p->num, dead);
+			if (state == unknown)
+				print_log(p->d, tv, p->num, dead);
 		}
 		else if (state != unknown)
 			p->state = state;
