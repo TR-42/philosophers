@@ -64,7 +64,7 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 	if (!print_log(p->d, *tv, p->num, take_a_fork_l)
 		|| pthread_mutex_lock(p->fork_r))
 		return (pthread_mutex_unlock(p->fork_l) >= 0);
-	success = gettimeofday(tv, NULL);
+	success = gettimeofday(tv, NULL) == 0;
 	if (success && t_tv_ispassed(tv, &(p->deadline)))
 		return (pthread_mutex_unlock(p->fork_l)
 			* pthread_mutex_unlock(p->fork_r) * 0);
