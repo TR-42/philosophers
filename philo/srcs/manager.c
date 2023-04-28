@@ -79,8 +79,9 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 
 static bool	philo_action(t_philo *p, t_tv *tv)
 {
-	if (!is_sim_end_or_set_state(p, sleeping)
-		|| !print_log(p->d, *tv, p->num, sleeping)
+	if (is_sim_end_or_set_state(p, sleeping))
+		return (true);
+	if (!print_log(p->d, *tv, p->num, sleeping)
 		|| !t_tv_addms(tv, p->d->sleep_ms))
 		return (false);
 	if (t_tv_ispassed(tv, &(p->deadline)))
