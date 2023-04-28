@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:49:36 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:36:28 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:55:11 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #ifdef DEBUG
 # define TAKE_A_FORK_L ("has taken a fork (L)")
-# define TAKE_A_FORK_R ("has taken a fork (L)")
+# define TAKE_A_FORK_R ("has taken a fork (R)")
 #else
 # define TAKE_A_FORK_L ("has taken a fork")
 # define TAKE_A_FORK_R ("has taken a fork")
