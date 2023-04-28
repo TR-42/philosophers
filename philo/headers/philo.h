@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:10:16 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:34:25 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct timeval	t_tv;
 typedef enum e_philo_state
 {
 	unknown,
-	take_a_fork,
+	take_a_fork_l,
+	take_a_fork_r,
 	eating,
 	thinking,
 	sleeping,
