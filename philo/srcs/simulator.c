@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:46:52 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:50:59 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ bool	is_sim_end_or_set_state(t_philo *p, t_pstat state)
 		else if (state != unknown)
 			p->state = state;
 	}
-	p->state = ended;
+	if (is_ended)
+		p->state = ended;
 	if (ret == 0)
 		pthread_mutex_unlock(&(p->stat_lck));
 	return (is_ended);
