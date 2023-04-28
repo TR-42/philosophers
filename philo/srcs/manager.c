@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 00:21:37 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 00:33:04 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,17 @@ void	*philo_soul(void *_p)
 	count = 0;
 	while (p->d->is_noquota || count++ < p->d->eat_quota)
 	{
-		if (!philo_eat(p, &tv) || !philo_action(p, &tv))
-		{
+		if (!philo_eat(p, &tv))
 			_state(p, err);
+		else if (t_tv_ispassed(&tv, &(p->deadline)))
 			break ;
-		}
+		else if (!philo_action(p, &tv))
+			_state(p, err);
+		else if (t_tv_ispassed(&tv, &(p->deadline)))
+			break ;
+		else
+			continue ;
+		break ;
 	}
 	return (NULL);
 }
