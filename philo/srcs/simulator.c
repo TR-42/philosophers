@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:12:57 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:46:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ int	end_simulation(t_app *d)
 		_state(d->philos + i++, ended);
 	i = 0;
 	while (i < d->philo_cnt)
-		pthread_join(d->philos[i].soul, NULL);
+		pthread_join(d->philos[i++].soul, NULL);
 	return (0);
 }
