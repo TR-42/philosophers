@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:03:02 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:08:06 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static bool	philo_action(t_philo *p)
 			&& !t_tv_ispassed(&tv, &(p->deadline)) && sleeper(tv, &tv));
 	(void)(pthread_mutex_unlock(p->fork_l) + pthread_mutex_unlock(p->fork_r));
 	if (!success)
-		return (_state(p, err) == unknown);
+		return (false);
 	return (is_sim_end_or_set_state(p, sleeping)
 		&& print_log(p->d, tv, p->num, sleeping)
 		&& t_tv_addms(&tv, p->d->sleep_ms)
