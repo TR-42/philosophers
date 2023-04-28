@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:41:34 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/28 23:03:02 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ static bool	philo_action(t_philo *p)
 	t_tv	tv;
 	bool	success;
 
-	if (pthread_mutex_lock(p->fork_l) || (pthread_mutex_lock(p->fork_r)
-			&& pthread_mutex_unlock(p->fork_l) >= 0))
+	if (pthread_mutex_lock(p->fork_l) != 0)
+		return (false);
+	if (gettimeofday(&tv, NULL) || t_tv_ispassed(&tv, &(p->deadline))
+		|| print_log(p->d, tv, p->num, take_a_fork))
+		return (pthread_mutex_unlock(p->fork_l) >= 0);
+	if (pthread_mutex_lock(p->fork_r) && pthread_mutex_unlock(p->fork_l) >= 0)
 		return (false);
 	success = (gettimeofday(&tv, NULL) == 0
+			&& !t_tv_ispassed(&tv, &(p->deadline))
+			&& print_log(p->d, tv, p->num, take_a_fork)
 			&& print_log(p->d, tv, p->num, _set_last_eat(p, tv))
 			&& t_tv_addms(&tv, p->d->eat_ms)
 			&& !t_tv_ispassed(&tv, &(p->deadline)) && sleeper(tv, &tv));
