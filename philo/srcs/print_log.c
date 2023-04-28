@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:49:36 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 00:20:49 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 00:24:53 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	print_log(t_app *d, t_tv time, size_t num, t_philo_state state)
 		return (false);
 	if (pthread_mutex_lock(&(d->print_lock)) != 0)
 		return (false);
-	ret = printf("%ld%04ld %zu %s\n",
-			time.tv_sec, time.tv_usec / 1000l, num, s_state);
+	ret = printf("%ld%03ld %zu %s\n",
+			time.tv_sec, (time.tv_usec / 1000l) % 1000, num, s_state);
 	return (pthread_mutex_unlock(&(d->print_lock)) == 0 && ret > 0);
 }
