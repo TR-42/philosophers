@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 00:33:04 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:12:49 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 	if (pthread_mutex_lock(p->fork_l) != 0)
 		return (false);
 	if (gettimeofday(tv, NULL) != 0)
-		return (pthread_mutex_unlock(p->fork_l) >= 0);
+		return (pthread_mutex_unlock(p->fork_l) * _state(p, err) * 0);
 	if (t_tv_ispassed(tv, &(p->deadline)))
-		return (pthread_mutex_unlock(p->fork_l) != 0);
+		return (pthread_mutex_unlock(p->fork_l) * 0);
 	if (!print_log(p->d, *tv, p->num, take_a_fork_l)
 		|| pthread_mutex_lock(p->fork_r))
-		return (pthread_mutex_unlock(p->fork_l) >= 0);
+		return (pthread_mutex_unlock(p->fork_l) * _state(p, err) * 0);
 	success = gettimeofday(tv, NULL) == 0;
 	if (success && t_tv_ispassed(tv, &(p->deadline)))
 		return (pthread_mutex_unlock(p->fork_l)
@@ -83,15 +83,19 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 static bool	philo_action(t_philo *p, t_tv *tv)
 {
 	if (is_sim_end_or_set_state(p, sleeping))
-		return (true);
+		return (false);
 	if (!print_log(p->d, *tv, p->num, sleeping)
 		|| !t_tv_addms(tv, p->d->sleep_ms))
-		return (false);
+		return (_state(p, err) * 0);
 	if (t_tv_ispassed(tv, &(p->deadline)))
-		return (true);
-	if (!sleeper(*tv, tv))
 		return (false);
-	return (print_log(p->d, *tv, p->num, thinking));
+	if (!sleeper(*tv, tv))
+		return (_state(p, err) * 0);
+	if (!is_sim_end_or_set_state(p, thinking))
+		return (false);
+	if (!print_log(p->d, *tv, p->num, thinking))
+		return (_state(p, err) * 0);
+	return (true);
 }
 
 void	*philo_soul(void *_p)
