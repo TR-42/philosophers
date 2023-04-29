@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:22:57 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 17:22:41 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:23:48 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 #include "ft_math.h"
 #include "philo.h"
 
-bool	sleeper(t_tv target, t_tv *result)
+bool	sleeper(t_tv target, t_tv *now)
 {
 	useconds_t	sleep_us;
 
-	if (result == NULL)
+	if (now == NULL)
 		return (false);
-	while (gettimeofday(result, NULL) == 0)
+	while (gettimeofday(now, NULL) == 0)
 	{
-		if (t_tv_ispassed(result, &target))
+		if (t_tv_ispassed(now, &target))
 			return (true);
-		if ((target.tv_sec - result->tv_sec) > 10)
+		if ((target.tv_sec - now->tv_sec) > 10)
 			sleep_us = 10 * 1000 * 1000;
 		else
-			sleep_us = (target.tv_sec - result->tv_sec) * 500000
-				+ ((long)(target.tv_usec) - result->tv_usec) / 2;
+			sleep_us = (target.tv_sec - now->tv_sec) * 500000
+				+ ((long)(target.tv_usec) - now->tv_usec) / 2;
 		if (usleep(sleep_us) != 0)
 			return (false);
 	}
