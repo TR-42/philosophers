@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/30 00:47:20 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/30 01:34:39 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ INCLUDES	=	-I ./headers
 CC		=	cc
 
 TEST_DIR	=	.tests
+TEST_SLEEPER	=	test_sleeper
 TEST_T_TV_ADDMS	=	test_t_tv_addms
 TEST_T_TV_ISPASSED	=	test_t_tv_ispassed
 
@@ -75,6 +76,7 @@ re:	fclean all
 
 t: test
 test:\
+	$(OBJ_DIR)/$(TEST_SLEEPER)\
 	$(OBJ_DIR)/$(TEST_T_TV_ADDMS)\
 	$(OBJ_DIR)/$(TEST_T_TV_ISPASSED)\
 
@@ -83,6 +85,12 @@ test:\
 
 	@echo
 	@$(OBJ_DIR)/$(TEST_T_TV_ISPASSED)
+
+	@echo
+	@$(OBJ_DIR)/$(TEST_SLEEPER)
+
+$(OBJ_DIR)/$(TEST_SLEEPER): ./$(TEST_DIR)/$(TEST_SLEEPER).c $(OBJS_NOMAIN)
+	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
 
 $(OBJ_DIR)/$(TEST_T_TV_ADDMS): ./$(TEST_DIR)/$(TEST_T_TV_ADDMS).c $(OBJS_NOMAIN)
 	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
