@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/29 16:53:52 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/29 17:00:01 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,9 @@ INCLUDES	=	-I ./headers
 
 CC		=	cc
 
+TEST_DIR	=	.tests
+TEST_T_TV_ADDMS	=	test_t_tv_addms
+
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
@@ -68,6 +71,13 @@ fclean:	clean
 
 re:	fclean all
 
+test: $(OBJ_DIR)/$(TEST_T_TV_ADDMS)
+	@echo '~~~~~~~~~~ TEST ~~~~~~~~~~~~'
+	@$(OBJ_DIR)/$(TEST_T_TV_ADDMS)
+
+$(OBJ_DIR)/$(TEST_T_TV_ADDMS): ./$(TEST_DIR)/$(TEST_T_TV_ADDMS).c $(OBJS_NOMAIN)
+	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
+
 -include $(DEPS) $(DEPS_BONUS)
 
-.PHONY:	clean debug
+.PHONY:	clean debug test
