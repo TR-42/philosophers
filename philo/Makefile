@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/30 00:20:27 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/30 00:21:04 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ CC		=	cc
 
 TEST_DIR	=	.tests
 TEST_T_TV_ADDMS	=	test_t_tv_addms
+TEST_T_TV_ISPASSED	=	test_t_tv_ispassed
 
 all:	$(NAME)
 
@@ -74,11 +75,18 @@ re:	fclean all
 t: test
 test:\
 	$(OBJ_DIR)/$(TEST_T_TV_ADDMS)\
+	$(OBJ_DIR)/$(TEST_T_TV_ISPASSED)\
 
 	@echo '~~~~~~~~~~ TEST ~~~~~~~~~~~~'
 	@$(OBJ_DIR)/$(TEST_T_TV_ADDMS)
 
+	@echo
+	@$(OBJ_DIR)/$(TEST_T_TV_ISPASSED)
+
 $(OBJ_DIR)/$(TEST_T_TV_ADDMS): ./$(TEST_DIR)/$(TEST_T_TV_ADDMS).c $(OBJS_NOMAIN)
+	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
+
+$(OBJ_DIR)/$(TEST_T_TV_ISPASSED): ./$(TEST_DIR)/$(TEST_T_TV_ISPASSED).c $(OBJS_NOMAIN)
 	$(CC) $(CFLAGS) -lpthread $(INCLUDES) -o $@ $^
 
 -include $(DEPS) $(DEPS_BONUS)
