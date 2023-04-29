@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/28 23:34:25 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:24:47 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ struct s_app
 	size_t	sleep_ms;
 	size_t	eat_quota;
 	bool	is_noquota;
-	t_tv	start;
+	t_tv	first_dl;
 	t_mtx	print_lock;
 	t_philo	*philos;
 	t_mtx	*forks;

@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 00:27:37 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:26:19 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	start_simulation(t_app *d)
 	size_t	i;
 	size_t	tmp;
 
-	if (gettimeofday(&(d->start), NULL) != 0)
+	if (gettimeofday(&(d->first_dl), NULL) != 0
+		|| !t_tv_addms(&(d->first_dl), d->die_ms))
 		return (print_err("Cannot set Start Time."));
 	i = 0;
 	while (i < d->philo_cnt)
 	{
+		d->philos[i].deadline = d->first_dl;
 		if (pthread_create(&(d->philos[i].soul), NULL,
 				philo_soul, d->philos + i) != 0)
 		{
