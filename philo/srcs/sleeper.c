@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:22:57 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/25 22:01:32 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:02:00 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ bool	t_tv_addms(t_tv *target, size_t ms)
 {
 	if (!can_addl(target->tv_sec, (ms / 1000) + (target->tv_usec / 1000000)))
 		return (false);
+	target->tv_usec = (((ms % 1000) * 1000) + target->tv_usec);
 	target->tv_sec += (ms / 1000) + (target->tv_usec / 1000000);
-	target->tv_usec = ((ms % 1000) * 1000 + target->tv_usec) % 1000000;
+	target->tv_usec %= 1000000;
 	return (true);
 }
 
