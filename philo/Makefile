@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/29 17:00:01 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/30 00:18:04 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,9 @@ fclean:	clean
 
 re:	fclean all
 
-test: $(OBJ_DIR)/$(TEST_T_TV_ADDMS)
+test:\
+	$(OBJ_DIR)/$(TEST_T_TV_ADDMS)\
+
 	@echo '~~~~~~~~~~ TEST ~~~~~~~~~~~~'
 	@$(OBJ_DIR)/$(TEST_T_TV_ADDMS)
 
