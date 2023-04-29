@@ -6,13 +6,16 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/27 23:07:30 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/29 16:53:52 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
 SRC_DIR	=	./srcs
+
+SRCS_MAIN	=\
+	main.c\
 
 SRCS	=\
 	libft/can_add.c\
@@ -23,16 +26,16 @@ SRCS	=\
 	libft/ft_strlen.c\
 	libft/ft_swap.c\
 	errors.c\
-	main.c\
 	manager.c\
 	print_log.c\
 	simulator.c\
 	sleeper.c\
 
 OBJ_DIR	=	./obj
-OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS_NOMAIN	=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS	=	$(OBJS_NOMAIN) $(addprefix $(OBJ_DIR)/, $(SRCS_MAIN:.c=.o))
 
-DEPS	=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.d))
+DEPS	=	$(OBJS:.o=.d)
 
 override CFLAGS	+=	-Wall -Wextra -Werror -MMD -MP
 INCLUDES	=	-I ./headers
