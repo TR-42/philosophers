@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:40:09 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/24 00:43:35 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:12:12 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,28 @@
 // - STDERR_FILENO
 // - write
 #include <unistd.h>
+
+#define PHILO_NUM_MSG " ... from Philo "
+
+int	print_err_num(const char *msg, size_t philo_num)
+{
+	size_t	len;
+	char	buf[32];
+	bool	success;
+
+	len = ft_strlen(msg);
+	if (len != 0)
+	{
+		success = 0 < write(STDERR_FILENO, msg, len);
+		if (success)
+			len = ft_ultoa(philo_num, buf, 10, false);
+		success = (success && 0 < len && 0 < write(STDERR_FILENO,
+					PHILO_NUM_MSG, sizeof(PHILO_NUM_MSG)));
+		success = (success && 0 < write(STDERR_FILENO, buf, len));
+		success = (success && 0 < write(STDERR_FILENO, "\n", 1));
+	}
+	return (1);
+}
 
 int	print_err(const char *msg)
 {
