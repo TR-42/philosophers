@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:41:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/23 23:55:36 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:59:20 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ void	*ft_calloc_nofill(size_t count, size_t size);
 void	*ft_calloc(size_t count, size_t size);
 
 void	ft_swap(void *a, void *b, size_t bytes);
+
+int		ft_ultoa(unsigned long value, char *buf,
+			unsigned char base, bool is_upper);
 
 #endif

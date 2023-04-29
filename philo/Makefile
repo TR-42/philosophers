@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/04/30 00:21:04 by kfujita          ###   ########.fr        #
+#    Updated: 2023/04/30 00:47:20 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS	=\
 	libft/ft_is.c\
 	libft/ft_strlen.c\
 	libft/ft_swap.c\
+	libft/ft_ultoa.c\
 	errors.c\
 	manager.c\
 	print_log.c\
