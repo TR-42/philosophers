@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 17:26:19 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:16:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,17 @@ bool	is_sim_end_or_set_state(t_philo *p, t_pstat state)
 		if (gettimeofday(&tv, NULL) != 0)
 			is_ended = (0 <= print_err("GetTimeOfDay failed."));
 		else if (t_tv_ispassed(&tv, &(p->deadline)))
-		{
-			is_ended = true;
-			if (state == unknown)
-				print_log(p->d, tv, p->num, dead);
-		}
+			p->state = dead;
 		else if (state != unknown)
 			p->state = state;
 	}
-	if (is_ended)
+	if (state == unknown && p->state == err)
+		print_err_num("Unknown error occured", p->num);
+	else if (state == unknown && p->state == dead)
+		print_log(p->d, tv, p->num, dead);
+	if (is_ended || p->state == dead)
 		p->state = ended;
-	if (ret == 0)
-		pthread_mutex_unlock(&(p->stat_lck));
+	(void)(ret == 0 && pthread_mutex_unlock(&(p->stat_lck)));
 	return (is_ended);
 }
 
