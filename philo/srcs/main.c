@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:39 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/27 23:43:41 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 00:26:27 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	_t_app_init_philo_mutex(t_app *d)
 			return (print_err_dispose_mem_mtx("mutex init failed", d, i));
 		d->philos[i].d = d;
 		d->philos[i].num = i + 1;
+		d->philos[i].state = thinking;
 		d->philos[i].fork_l = d->forks + i;
 		if (i == (d->philo_cnt - 1))
 			d->philos[i].fork_r = d->forks;

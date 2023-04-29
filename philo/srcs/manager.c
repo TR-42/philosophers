@@ -47,7 +47,8 @@ static t_pstat	_set_last_eat(t_philo *p, t_tv tv)
 	if (t_tv_addms(&tv, p->d->die_ms) != true)
 		stat = err;
 	p->deadline = tv;
-	p->state = stat;
+	if (p->state != dead && p->state != err && p->state != ended)
+		p->state = stat;
 	if (result == 0)
 		pthread_mutex_unlock(&(p->stat_lck));
 	return (stat);
