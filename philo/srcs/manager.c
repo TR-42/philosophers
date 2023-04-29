@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/30 01:12:49 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:48:01 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static bool	philo_action(t_philo *p, t_tv *tv)
 		return (false);
 	if (!sleeper(*tv, tv))
 		return (_state(p, err) * 0);
-	if (!is_sim_end_or_set_state(p, thinking))
+	if (is_sim_end_or_set_state(p, thinking))
 		return (false);
 	if (!print_log(p->d, *tv, p->num, thinking))
 		return (_state(p, err) * 0);
@@ -110,17 +110,11 @@ void	*philo_soul(void *_p)
 	count = 0;
 	while (p->d->is_noquota || count++ < p->d->eat_quota)
 	{
-		if (!philo_eat(p, &tv))
-			_state(p, err);
-		else if (t_tv_ispassed(&tv, &(p->deadline)))
+		if (!philo_eat(p, &tv)
+			|| t_tv_ispassed(&tv, &(p->deadline))
+			|| !philo_action(p, &tv)
+			|| t_tv_ispassed(&tv, &(p->deadline)))
 			break ;
-		else if (!philo_action(p, &tv))
-			_state(p, err);
-		else if (t_tv_ispassed(&tv, &(p->deadline)))
-			break ;
-		else
-			continue ;
-		break ;
 	}
 	return (NULL);
 }
