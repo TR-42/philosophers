@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:22:57 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 17:02:00 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:22:41 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	sleeper(t_tv target, t_tv *result)
 		return (false);
 	while (gettimeofday(result, NULL) == 0)
 	{
-		if (t_tv_ispassed(&target, result))
+		if (t_tv_ispassed(result, &target))
 			return (true);
 		if ((target.tv_sec - result->tv_sec) > 10)
 			sleep_us = 10 * 1000 * 1000;
@@ -52,7 +52,7 @@ bool	t_tv_addms(t_tv *target, size_t ms)
 
 bool	t_tv_ispassed(const t_tv *now, const t_tv *target)
 {
-	return (now->tv_sec < target->tv_sec
+	return (now->tv_sec > target->tv_sec
 		|| (now->tv_sec == target->tv_sec
-			&& now->tv_usec <= target->tv_usec));
+			&& now->tv_usec >= target->tv_usec));
 }
