@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/29 17:24:47 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 00:46:09 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_philo
 {
 	t_app	*d;
 	size_t	num;
+	size_t	eaten_count;
+	t_mtx	cnt_lck;
 	t_thrd	soul;
 	t_tv	deadline;
 	t_pstat	state;
@@ -87,5 +89,9 @@ int		start_simulation(t_app *d);
 bool	is_sim_end_or_set_state(t_philo *p, t_pstat state);
 int		monitor_state(t_app *d);
 int		end_simulation(t_app *d);
+
+void	set_eat_cnt(t_philo *p, size_t v);
+void	inc_eat_cnt(t_philo *p);
+size_t	get_eat_cnt(t_philo *p);
 
 #endif
