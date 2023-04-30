@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:21:31 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/30 01:16:52 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 01:04:59 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,21 @@ bool	is_sim_end_or_set_state(t_philo *p, t_pstat state)
 int	monitor_state(t_app *d)
 {
 	size_t	i;
+	bool	simend;
 
 	i = 0;
-	while (true)
+	simend = false;
+	while (!simend)
 	{
 		i = 0;
+		simend = !(d->is_noquota);
 		while (i < d->philo_cnt)
-			if (is_sim_end_or_set_state(d->philos + i++, unknown))
+		{
+			if (is_sim_end_or_set_state(d->philos + i, unknown))
 				return (0);
+			simend = (simend && (d->eat_quota <= get_eat_cnt(d->philos + i)));
+			i++;
+		}
 	}
 	return (0);
 }

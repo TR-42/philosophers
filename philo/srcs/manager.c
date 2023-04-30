@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/04/30 01:48:01 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 01:20:23 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,16 @@ void	*philo_soul(void *_p)
 {
 	t_philo	*p;
 	t_tv	tv;
-	size_t	count;
 
 	p = (t_philo *)_p;
 	if ((p->num % 2) == 0)
 		ft_swap(&(p->fork_l), &(p->fork_r), sizeof(t_mtx *));
-	count = 0;
-	while (p->d->is_noquota || count++ < p->d->eat_quota)
+	while (true)
 	{
-		if (!philo_eat(p, &tv)
-			|| t_tv_ispassed(&tv, &(p->deadline))
+		if (!philo_eat(p, &tv))
+			break ;
+		inc_eat_cnt(p);
+		if (t_tv_ispassed(&tv, &(p->deadline))
 			|| !philo_action(p, &tv)
 			|| t_tv_ispassed(&tv, &(p->deadline)))
 			break ;
