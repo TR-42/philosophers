@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 00:46:09 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 00:51:47 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ int		end_simulation(t_app *d);
 void	set_eat_cnt(t_philo *p, size_t v);
 void	inc_eat_cnt(t_philo *p);
 size_t	get_eat_cnt(t_philo *p);
+
+int		_t_app_init(t_app *d, int argc, const char *argv[]);
 
 #endif
