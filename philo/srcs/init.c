@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:49:51 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 00:51:22 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 00:56:50 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,22 @@ static bool	_set(const char *str, size_t	*variable)
 	return (errno == 0);
 }
 
+static bool	_init_philo(t_philo *p, t_app *d, size_t i)
+{
+	d->forks[i] = (t_mtx){0};
+	if (pthread_mutex_init(d->forks + i, NULL) != 0)
+		return (false);
+	p->d = d;
+	p->num = i + 1;
+	p->state = thinking;
+	p->fork_l = d->forks + i;
+	if (i == (d->philo_cnt - 1))
+		p->fork_r = d->forks;
+	else
+		p->fork_r = d->forks + i + 1;
+	return (true);
+}
+
 // f[0] p[0] f[1] p[1] ... f[LAST] p[LAST] f[0]
 static int	_t_app_init_philo_mutex(t_app *d)
 {
@@ -44,17 +60,8 @@ static int	_t_app_init_philo_mutex(t_app *d)
 		return (print_err_dispose_mem("mutex for log-print init failed", d));
 	while (i < d->philo_cnt)
 	{
-		d->forks[i] = (t_mtx){0};
-		if (pthread_mutex_init(d->forks + i, NULL) != 0)
+		if (_init_philo(d->philos + i, d, i) != true)
 			return (print_err_dispose_mem_mtx("mutex init failed", d, i));
-		d->philos[i].d = d;
-		d->philos[i].num = i + 1;
-		d->philos[i].state = thinking;
-		d->philos[i].fork_l = d->forks + i;
-		if (i == (d->philo_cnt - 1))
-			d->philos[i].fork_r = d->forks;
-		else
-			d->philos[i].fork_r = d->forks + i + 1;
 		i++;
 	}
 	return (0);
