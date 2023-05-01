@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:29:04 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:37:52 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 	success = (success && print_log(p->d, *tv, p->num, take_a_fork_r));
 	success = (success && print_log(p->d, *tv, p->num, _set_last_eat(p, *tv)));
 	success = (success && t_tv_addms(tv, p->d->eat_ms));
-	if (success && !is_sim_end(p, tv))
-		success = sleeper(*tv, tv);
+	if (!success)
+		_state(p, err);
+	else if (!is_sim_end(p, tv))
+		success = (sleeper(*tv, tv) || _state(p, err) * 0);
 	(void)(pthread_mutex_unlock(p->fork_l) + pthread_mutex_unlock(p->fork_r));
 	return (success);
 }
