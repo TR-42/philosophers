@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:54:28 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 22:14:00 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 		return (put_forkl(p) * _state(p, err) * 0);
 	if (is_sim_end(p, tv))
 		return (put_forkl(p) * 0);
-	if (!print_log(p->d, *tv, p->num, take_a_fork_l) || take_forkr(p))
-		return (put_forkl(p) * _state(p, err) * 0);
+	if (!print_log(p->d, *tv, p->num, take_a_fork_l)
+		|| (p->d->philo_cnt <= 1 || !take_forkr(p)))
+		return (put_forkl(p) * (p->d->philo_cnt <= 1 || _state(p, err)) * 0);
 	success = gettimeofday(tv, NULL) == 0;
 	if (success && is_sim_end(p, tv))
 		return (put_forks(p) * 0);
