@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:08:39 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:51:55 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,11 @@ void	inc_eat_cnt(t_philo *p);
 size_t	get_eat_cnt(t_philo *p);
 
 int		_t_app_init(t_app *d, int argc, const char *argv[]);
+
+bool	take_forkl(t_philo *p);
+bool	take_forkr(t_philo *p);
+bool	put_forkl(t_philo *p);
+bool	put_forkr(t_philo *p);
+bool	put_forks(t_philo *p);
 
 #endif
