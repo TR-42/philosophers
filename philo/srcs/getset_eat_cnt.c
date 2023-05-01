@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:40:13 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 00:44:49 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 01:04:04 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	inc_eat_cnt(t_philo *p)
 	int	result;
 
 	result = pthread_mutex_lock(&(p->stat_lck));
-	(p->eaten_count)++;
+	if (p->d->is_noquota || p->eaten_count < p->d->eat_quota)
+		(p->eaten_count)++;
 	if (result == 0)
 		pthread_mutex_unlock(&(p->stat_lck));
 }
