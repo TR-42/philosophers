@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:23:27 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:29:04 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,7 @@ void	*philo_soul(void *_p)
 		if (!philo_eat(p, &tv))
 			break ;
 		inc_eat_cnt(p);
-		if (t_tv_ispassed(&tv, &(p->deadline))
-			|| !philo_action(p, &tv)
-			|| t_tv_ispassed(&tv, &(p->deadline)))
+		if (!philo_action(p, &tv))
 			break ;
 	}
 	return (NULL);
