@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 22:14:00 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 22:14:39 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ static t_pstat	_set_last_eat(t_philo *p, t_tv tv)
 
 	stat = eating;
 	result = pthread_mutex_lock(&(p->stat_lck));
-	if (t_tv_addms(&tv, p->d->die_ms) != true)
-		stat = err;
-	p->deadline = tv;
 	if (p->state != dead && p->state != err && p->state != ended)
+	{
+		if (t_tv_addms(&tv, p->d->die_ms) != true)
+			stat = err;
+		p->deadline = tv;
 		p->state = stat;
+	}
 	else
 		stat = p->state;
 	if (result == 0)
