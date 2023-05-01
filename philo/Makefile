@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/05/01 00:50:54 by kfujita          ###   ########.fr        #
+#    Updated: 2023/05/01 20:44:35 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	=\
 	init.c\
 	manager.c\
 	print_log.c\
+	sim_end_chk.c\
 	simulator.c\
 	sleeper.c\
 
