@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:37:52 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:54:28 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,17 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 {
 	bool	success;
 
-	if (pthread_mutex_lock(p->fork_l) != 0)
+	if (take_forkl(p) != true)
 		return (false);
 	if (gettimeofday(tv, NULL) != 0)
-		return (pthread_mutex_unlock(p->fork_l) * _state(p, err) * 0);
+		return (put_forkl(p) * _state(p, err) * 0);
 	if (is_sim_end(p, tv))
-		return (pthread_mutex_unlock(p->fork_l) * 0);
-	if (!print_log(p->d, *tv, p->num, take_a_fork_l)
-		|| pthread_mutex_lock(p->fork_r))
-		return (pthread_mutex_unlock(p->fork_l) * _state(p, err) * 0);
+		return (put_forkl(p) * 0);
+	if (!print_log(p->d, *tv, p->num, take_a_fork_l) || take_forkr(p))
+		return (put_forkl(p) * _state(p, err) * 0);
 	success = gettimeofday(tv, NULL) == 0;
 	if (success && is_sim_end(p, tv))
-		return (pthread_mutex_unlock(p->fork_l)
-			* pthread_mutex_unlock(p->fork_r) * 0);
+		return (put_forks(p) * 0);
 	success = (success && print_log(p->d, *tv, p->num, take_a_fork_r));
 	success = (success && print_log(p->d, *tv, p->num, _set_last_eat(p, *tv)));
 	success = (success && t_tv_addms(tv, p->d->eat_ms));
@@ -80,8 +78,7 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 		_state(p, err);
 	else if (!is_sim_end(p, tv))
 		success = (sleeper(*tv, tv) || _state(p, err) * 0);
-	(void)(pthread_mutex_unlock(p->fork_l) + pthread_mutex_unlock(p->fork_r));
-	return (success);
+	return (put_forks(p) && success);
 }
 
 static bool	philo_action(t_philo *p, t_tv *tv)
