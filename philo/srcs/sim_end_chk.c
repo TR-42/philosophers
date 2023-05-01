@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 20:44:07 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:08:49 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:21:13 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ bool	is_sim_end(t_philo *p, const t_tv *now)
 	bool	is_ended;
 
 	ret = pthread_mutex_lock(&(p->stat_lck));
-	if (p->state == ended)
-		return (true);
-	is_ended = is_sim_end_nolock(p, now, false);
+	is_ended = (p->state == dead || p->state == err || p->state == ended);
+	if (!is_ended)
+		is_ended = t_tv_ispassed(now, &(p->deadline));
 	if (ret == 0)
 		pthread_mutex_unlock(&(p->stat_lck));
 	return (is_ended);
