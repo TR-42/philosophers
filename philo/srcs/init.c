@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:49:51 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 00:59:19 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 00:50:27 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int	_t_app_init(t_app *d, int argc, const char *argv[])
 		|| !_set(argv[3], &(d->eat_ms)) || !_set(argv[4], &(d->sleep_ms))
 		|| (argc == 6 && !_set(argv[5], &(d->eat_quota))))
 		return (print_err("Invalid argument format (Parse Error)"));
-	if (d->philo_cnt <= 0 || d->die_ms <= 0 || d->philo_cnt == UINTPTR_MAX)
+	if (d->philo_cnt <= 0 || d->die_ms <= 0 || d->eat_ms <= 0
+		|| d->sleep_ms <= 0 || d->philo_cnt == UINTPTR_MAX)
 		return (print_err("Invalid argument (some argument out of range)"));
 	d->is_noquota = argc != 6;
 	d->philos = ft_calloc(d->philo_cnt, sizeof(t_philo));
