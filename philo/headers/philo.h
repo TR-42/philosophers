@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 00:51:47 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/01 21:08:39 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ bool	t_tv_ispassed(const t_tv *now, const t_tv *target);
 void	*philo_soul(void *p);
 t_pstat	_state(t_philo *p, t_pstat state);
 
-int		start_simulation(t_app *d);
+bool	is_sim_end(t_philo *p, const t_tv *now);
+bool	is_sim_end_nolock(t_philo *p, const t_tv *now, bool do_print);
 bool	is_sim_end_or_set_state(t_philo *p, t_pstat state);
+
+int		start_simulation(t_app *d);
 int		monitor_state(t_app *d);
 int		end_simulation(t_app *d);
 
