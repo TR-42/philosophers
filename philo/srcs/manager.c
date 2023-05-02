@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 22:14:39 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:30:20 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void	*philo_soul(void *_p)
 	t_tv	tv;
 
 	p = (t_philo *)_p;
-	if ((p->num % 2) == 0)
-		ft_swap(&(p->fork_l), &(p->fork_r), sizeof(t_mtx *));
 	while (true)
 	{
 		if (!philo_eat(p, &tv))

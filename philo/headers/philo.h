@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:24 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 21:51:55 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:27:31 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct s_philo
 	t_tv	deadline;
 	t_pstat	state;
 	t_mtx	stat_lck;
-	t_mtx	*fork_l;
-	t_mtx	*fork_r;
 }	t_philo;
 
 // philo_cnt: number_of_philosophers
@@ -74,6 +72,7 @@ struct s_app
 	t_mtx	print_lock;
 	t_philo	*philos;
 	t_mtx	*forks;
+	size_t	*fork_holder;
 };
 
 bool	print_log(t_app *d, t_tv time, size_t num, t_philo_state state);

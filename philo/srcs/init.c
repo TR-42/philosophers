@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:49:51 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/02 11:10:05 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:29:50 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ static bool	_init_philo(t_philo *p, t_app *d, size_t i)
 	p->d = d;
 	p->num = i + 1;
 	p->state = thinking;
-	p->fork_l = d->forks + i;
-	if (i == (d->philo_cnt - 1))
-		p->fork_r = d->forks;
-	else
-		p->fork_r = d->forks + i + 1;
 	return (true);
 }
 
@@ -92,8 +87,9 @@ int	_t_app_init(t_app *d, int argc, const char *argv[])
 		return (print_err("Invalid argument (some argument out of range)"));
 	d->is_noquota = argc != 6;
 	d->philos = ft_calloc(d->philo_cnt, sizeof(t_philo));
+	d->fork_holder = ft_calloc(d->philo_cnt, sizeof(size_t));
 	d->forks = ft_calloc_nofill(d->philo_cnt, sizeof(t_mtx));
-	if (d->philos == NULL || d->forks == NULL)
+	if (d->philos == NULL || d->fork_holder == NULL || d->forks == NULL)
 		return (print_err_dispose_mem("malloc failed", d));
 	return (_t_app_init_philo_mutex(d));
 }
