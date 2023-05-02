@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:49:51 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/02 00:50:27 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/02 11:10:05 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ static bool	_init_philo(t_philo *p, t_app *d, size_t i)
 	if (pthread_mutex_init(&(p->cnt_lck), NULL) != 0)
 	{
 		pthread_mutex_destroy(d->forks + i);
+		return (false);
+	}
+	if (pthread_mutex_init(&(p->stat_lck), NULL) != 0)
+	{
+		pthread_mutex_destroy(d->forks + i);
+		pthread_mutex_destroy(&(p->cnt_lck));
 		return (false);
 	}
 	p->d = d;
