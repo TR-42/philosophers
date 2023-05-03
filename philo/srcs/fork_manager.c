@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 21:43:29 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/04 00:25:08 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/04 00:52:32 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ bool	take_forks(t_philo *p, t_tv *now)
 			return (false);
 		if (!lfork)
 			usleep(5);
+		if (p->d->philo_cnt == 1)
+			return (false);
 		if (_try_r(p, &rfork, lfork, now) != true)
 			return (false);
 		if (!rfork)
