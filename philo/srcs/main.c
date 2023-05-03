@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:29:39 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/01 22:18:33 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/04 00:48:37 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, const char *argv[])
 	int		ret;
 
 	ret = _t_app_init(&d, argc, argv);
-	if (ret != 0 || d.eat_quota == 0)
+	if (ret != 0 || (!d.is_noquota && d.eat_quota == 0))
 		return (ret);
 	ret = start_simulation(&d);
 	if (ret == 0)
