@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/03 19:29:08 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/04 00:44:18 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,16 @@ void	*philo_soul(void *_p)
 	t_tv	tv;
 
 	p = (t_philo *)_p;
+	if ((p->num % 2) == 0)
+	{
+		if (gettimeofday(&tv, NULL) != 0
+			|| !t_tv_addms(&tv, p->d->eat_ms))
+			return ((void *)(_state(p, err) * (size_t)0));
+		if (is_sim_end(p, &tv))
+			return (NULL);
+		if (!sleeper(tv, &tv))
+			return ((void *)(_state(p, err) * (size_t)0));
+	}
 	while (true)
 	{
 		if (!philo_eat(p, &tv))
