@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:36:53 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/02 18:30:20 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/03 19:29:08 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,9 @@ static bool	philo_eat(t_philo *p, t_tv *tv)
 {
 	bool	success;
 
-	if (take_forkl(p) != true)
+	if (take_forks(p, tv) != true)
 		return (false);
-	if (gettimeofday(tv, NULL) != 0)
-		return (put_forkl(p) * _state(p, err) * 0);
-	if (is_sim_end(p, tv))
-		return (put_forkl(p) * 0);
-	if (!print_log(p->d, *tv, p->num, take_a_fork_l)
-		|| (p->d->philo_cnt <= 1 || !take_forkr(p)))
-		return (put_forkl(p) * (p->d->philo_cnt <= 1 || _state(p, err)) * 0);
-	success = gettimeofday(tv, NULL) == 0;
-	if (success && is_sim_end(p, tv))
-		return (put_forks(p) * 0);
-	success = (success && print_log(p->d, *tv, p->num, take_a_fork_r));
-	success = (success && print_log(p->d, *tv, p->num, _set_last_eat(p, *tv)));
+	success = print_log(p->d, *tv, p->num, _set_last_eat(p, *tv));
 	success = (success && t_tv_addms(tv, p->d->eat_ms));
 	if (!success)
 		_state(p, err);

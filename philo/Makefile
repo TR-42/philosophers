@@ -6,7 +6,7 @@
 #    By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:24:52 by kfujita           #+#    #+#              #
-#    Updated: 2023/05/01 21:48:04 by kfujita          ###   ########.fr        #
+#    Updated: 2023/05/03 19:23:25 by kfujita          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS	=\
 	libft/ft_swap.c\
 	libft/ft_ultoa.c\
 	errors.c\
+	fork_manager_utils.c\
 	fork_manager.c\
 	getset_eat_cnt.c\
 	init.c\
