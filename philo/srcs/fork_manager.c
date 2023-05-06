@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 21:43:29 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/04 00:52:32 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/06 15:35:36 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	take_forks(t_philo *p, t_tv *now)
 	rfork = false;
 	while (!lfork || !rfork)
 	{
-		if (_try_l(p, &lfork, rfork, now) != true)
+		if (_try_l(p, &lfork, rfork || p->d->philo_cnt == 1, now) != true)
 			return (false);
 		if (!lfork)
 			usleep(5);
