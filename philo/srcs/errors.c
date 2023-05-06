@@ -6,7 +6,7 @@
 /*   By: kfujita <kfujita@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:40:09 by kfujita           #+#    #+#             */
-/*   Updated: 2023/05/02 11:12:30 by kfujita          ###   ########.fr       */
+/*   Updated: 2023/05/06 15:33:12 by kfujita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int	print_err_dispose_mem(const char *msg, t_app *d)
 	print_err(msg);
 	free(d->philos);
 	free(d->forks);
+	free(d->fork_holder);
 	d->philos = NULL;
 	d->forks = NULL;
+	d->fork_holder = NULL;
 	return (1);
 }
 
